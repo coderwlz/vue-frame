@@ -8,7 +8,8 @@
       <header-view :collapsed="collapsed" @checkCollapsed="checkCollapsed"></header-view>
       <tabs-view></tabs-view>
       <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+        class="main-content"
+        :style="{ margin: '24px 16px', padding: '24px', minHeight: '280px' }"
       >
         <RouterView />
       </a-layout-content>
@@ -34,5 +35,19 @@ const checkCollapsed = () => {
 <style lang="less" scoped>
 .layout {
   height: 100%;
+}
+.theme-default {
+  .layout {
+    .main-content {
+      background: #fff !important;
+    }
+  }
+}
+.theme-dark {
+  .layout {
+    .main-content {
+      background: #000 !important;
+    }
+  }
 }
 </style>

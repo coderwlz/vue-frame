@@ -1,3 +1,3 @@
 <template>
-  <div>111111111111111111111</div>
+  <div><a-button class="mt-2" type="primary">Primary Button</a-button></div>
 </template>

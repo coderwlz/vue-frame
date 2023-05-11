@@ -14,9 +14,19 @@ const version = computed(() => {
 .footer {
   height: 32px;
   padding: 0 10px;
-  background-color: var(--color-background);
+  // background-color: var(--color-background);
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.theme-default {
+  .footer {
+    background: #fff;
+  }
+}
+.theme-dark {
+  .footer {
+    background: #000;
+  }
 }
 </style>

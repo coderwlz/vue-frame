@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header class="layout-header" style="background: #fff">
+  <a-layout-header class="layout-header">
     <div class="layout-header-left">
       <menu-unfold-outlined v-if="collapsed" class="trigger" @click="checkCollapsed" />
       <menu-fold-outlined v-else class="trigger" @click="checkCollapsed" />
@@ -24,6 +24,12 @@
     </div>
     <div class="layout-header-right">
       <a-space :size="20">
+        <a-switch
+          v-model:checked="checked"
+          checked-children="暗"
+          un-checked-children="白"
+          @change="change"
+        />
         <search-outlined />
         <lock-outlined @click="setLock" />
         <fullscreen-outlined />
@@ -36,10 +42,11 @@
   </a-layout-header>
 </template>
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { toggleTheme } from '@zougt/vite-plugin-theme-preprocessor/dist/browser-utils.js'
 import { useRouter } from 'vue-router'
-import { useTabsViewStore } from '@/stores/tabsView.js'
 import { storeToRefs } from 'pinia'
+import { useTabsViewStore } from '@/stores/tabsView.js'
 
 const setLock = () => {}
 const tabsViewStore = useTabsViewStore()
@@ -107,14 +114,31 @@ const getParent = (arr) => {
   }
   return parent
 }
+const checked = ref(false)
+
+// 切换主题回调
+const change = (value) => {
+  // 如果开关打开，就切换为绿色主题，否则默认黄色主题
+  if (value) {
+    toggleTheme({
+      scopeName: 'theme-dark'
+    })
+    console.log('已切换为绿色主题')
+  } else {
+    toggleTheme({
+      scopeName: 'theme-default'
+    })
+    console.log('已切换为默认主题')
+  }
+}
 </script>
 <style lang="less">
 .layout-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 15px;
-  padding-right: 20px;
+  padding-left: 15px !important;
+  padding-right: 20px !important;
   .layout-header-left {
     cursor: pointer;
     display: flex;
@@ -124,6 +148,11 @@ const getParent = (arr) => {
       align-items: center;
       margin-left: 15px;
     }
+  }
+}
+.theme-default {
+  .layout-header {
+    background: #fff !important;
   }
 }
 </style>

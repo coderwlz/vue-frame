@@ -142,11 +142,10 @@ window.addEventListener('beforeunload', () => {
 </script>
 <style lang="less" scoped>
 .layout-tabs {
-  background: white;
+  // background: white;
   padding-top: 5px;
   padding-left: 10px;
   height: 45px;
-  border-top: 1px solid #f0f0f0;
   display: flex;
   .layout-tab {
     flex: 1;
@@ -158,6 +157,17 @@ window.addEventListener('beforeunload', () => {
     font-size: 20px;
     height: 20px;
     cursor: pointer;
+  }
+}
+.theme-default {
+  .layout-tabs {
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+  }
+}
+.theme-dark {
+  .layout-tabs {
+    border-top: 1px solid #000;
   }
 }
 </style>
